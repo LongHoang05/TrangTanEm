@@ -1,101 +1,909 @@
-<!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới Thiệu Bản Thân</title>
+    <title>Yêuu emmmmm 💕</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-        }
-        .container {
-            width: 60%;
-            margin: 50px auto;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid white;
-        }
-        .social-icons {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .social-icons a {
-            text-decoration: none;
-            font-size: 20px;
-            color: white;
-            transition: transform 0.3s ease, background 0.3s ease;
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            border-radius: 5px;
-            width: 200px;
-            justify-content: center;
-        }
-        .qr-code { background-color: #ff9800; }
-        .facebook { background-color: #1877f2; }
-        .zalo { background-color: #0088cc; }
-        .tiktok { background-color: #000000; }
-        .social-icons a:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-        .contact {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .divider {
-            margin: 20px 0;
-            border-top: 2px solid white;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* ========== CÁC BIẾN CSS ========== */
+:root {
+    /* Màu sắc chủ đạo */
+    --pink-primary: #ff6b9d;    /* Màu hồng chính */
+    --pink-light: #ffb3c8;      /* Màu hồng nhạt */
+    --pink-lighter: #ffd6e7;    /* Màu hồng rất nhạt */
+    --white: #ffffff;           /* Màu trắng */
+    --text-dark: #4a2a3a;       /* Màu chữ tối */
+    --text-light: #fff;         /* Màu chữ sáng */
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng mềm */
+}
+
+/* ========== STYLE CHUNG ========== */
+body {
+    background: linear-gradient(135deg, var(--pink-light), var(--white));
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wrapper chứa nội dung chính */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ========== PHẦN CÂU HỎI ========== */
+.question {
+    font-size: 28px;
+    margin: 0 0 40px 0;
+    color: var(--pink-primary);
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* ========== PHẦN LỰA CHỌN (NÚT BẤM) ========== */
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 1;
+    margin-top: 30px;
+}
+
+/* Style chung cho các nút lựa chọn */
+.option {
+    padding: 15px 45px;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-soft);
+    font-weight: bold;
+    position: relative;
+}
+
+/* Nút đồng ý */
+.yes {
+    background-color: #4caf50; /* Màu xanh lá */
+    color: white;
+    border: 2px solid #4caf50;
+}
+
+/* Nút từ chối */
+.no {
+    background-color: #f44336; /* Màu đỏ */
+    color: white;
+    border: 2px solid #f44336;
+}
+
+/* Hiệu ứng khi hover vào nút */
+.option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== PHẦN HÌNH ẢNH ========== */
+.media-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.media-content {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 50%; /* Bo tròn hình ảnh */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.media-content:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+/* ========== POPUP CHÍNH ========== */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Nền mờ đen */
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s; /* Hiệu ứng xuất hiện */
+}
+
+.popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 80%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0);
+    animation: zoomIn 0.5s forwards; /* Hiệu ứng phóng to */
+    position: relative;
+}
+
+.popup-content h2 {
+    color: var(--pink-primary);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.popup-content p {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Ô nhập tin nhắn */
+.input-message {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 2px solid var(--pink-lighter);
+    border-radius: 10px;
+    font-size: 16px;
+    min-height: 25px;
+    transition: border 0.3s;
+    resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
+}
+
+.input-message:focus {
+    border-color: var(--pink-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 77, 141, 0.2);
+}
+
+/* Nút gửi */
+.submit-btn {
+    background-color: var(--pink-primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #e84379;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Nút đóng popup */
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.3s;
+}
+
+.popup-close:hover {
+    color: var(--pink-primary);
+}
+
+/* ========== POPUP THÀNH CÔNG ========== */
+#successPopup .popup-content {
+    max-width: 500px;
+    width: 90%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: zoomIn 0.5s forwards, bounce 0.5s 0.5s forwards, pulse 2s infinite 0.5s;
+    position: relative;
+}
+
+/* Viền trang trí cho popup */
+#successPopup .popup-content::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px dashed var(--pink-primary);
+    border-radius: 25px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+#successMessage {
+    font-size: 18px;
+    padding: 20px;
+    background-color: var(--pink-lighter);
+    border-radius: 15px;
+    margin: 20px 0;
+    width: 100%;
+    line-height: 1.6;
+}
+
+#successPopup h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+#successPopup .popup-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid var(--pink-lighter);
+    margin: 15px 0;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+/* Nút OK trong popup thành công */
+#okBtn {
+    padding: 15px 40px;
+    font-size: 18px;
+    margin-top: 20px;
+    background: linear-gradient(45deg, var(--pink-primary), #ff8fab);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s;
+}
+
+#okBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.6);
+}
+
+/* ========== HIỆU ỨNG CONFETTI ========== */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    border-radius: 50%;
+    animation: confetti 3s linear forwards;
+    z-index: 1001;
+}
+
+/* ========== SPINNER LOADING ========== */
+.spinner {
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: 10px auto;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--pink-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ========== FOOTER ========== */
+.author-lh-footer {
+    text-align: center;
+    margin-top: 1px;
+    padding: 15px;
+    color: var(--pink-primary);
+    font-size: 14px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.author-lh-footer:hover {
+    opacity: 1;
+}
+
+.author-lh-footer a {
+    color: var(--pink-primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.author-lh-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ========== POPUP HỦY ========== */
+#cancelPopup .popup-content {
+    max-width: 500px;
+    width: 90%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: zoomIn 0.5s forwards;
+    position: relative;
+}
+
+#cancelMessage {
+    font-size: 18px;
+    padding: 20px;
+    background-color: var(--pink-lighter);
+    border-radius: 15px;
+    margin: 20px 0;
+    width: 100%;
+    line-height: 1.6;
+}
+
+/* Nút OK trong popup hủy */
+#cancelOkBtn {
+    padding: 15px 40px;
+    font-size: 18px;
+    background: linear-gradient(45deg, var(--pink-primary), #ff8fab);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+}
+
+/* ========== POPUP LỖI ========== */
+#errorPopup .popup-content {
+    max-width: 500px;
+    width: 90%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: zoomIn 0.5s forwards;
+    position: relative;
+}
+
+#errorMessage {
+    font-size: 18px;
+    padding: 20px;
+    background-color: #ffebee;
+    border-radius: 15px;
+    margin: 20px 0;
+    width: 100%;
+    line-height: 1.6;
+    color: #d32f2f;
+}
+
+/* Nút OK trong popup lỗi */
+#errorOkBtn {
+    padding: 15px 40px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #f44336, #ff8fab);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
+}
+
+/* ========== CÁC HIỆU ỨNG ANIMATION ========== */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    to { transform: scale(1); }
+}
+
+@keyframes confetti {
+    0% { 
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 600px) {
+    .question {
+        font-size: 22px;
+        margin-bottom: 50px;
+        padding-bottom: 20px;
+    }
+
+    .options {
+        margin-top: 20px;
+        margin-bottom: 60px;
+        gap: 15px;
+    }
+
+    .option {
+        font-size: 18px;
+        padding: 12px 30px;
+    }
+
+    .media-content {
+        max-height: 250px;
+    }
+    
+    .popup-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+    
+    .popup-content h2 {
+        font-size: 20px;
+    }
+    
+    .popup-content p {
+        font-size: 16px;
+    }
+    
+    #successPopup .popup-content {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    #successMessage {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    #successPopup h2 {
+        font-size: 24px;
+    }
+}
     </style>
-    <script>
-        function toggleQR() {
-            document.getElementById("qr-popup").style.display = "flex";
-        }
-        function closeQR() {
-            document.getElementById("qr-popup").style.display = "none";
-        }
-    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Xin chào! Tôi là Nguyễn Văn Trịnh</h1>
-        <img src="https://lh3.googleusercontent.com/d/1Audtf8EtbnJudbtQMY1zmqnbrCxCvH2v=w500-h500" alt="Ảnh đại diện">
-        <div class="divider"></div>
-        <div class="social-icons">
-            <a href="javascript:void(0);" onclick="toggleQR()" class="qr-code">Mã QR</a>
-            <a href="https://www.facebook.com/share/15wddLgAMF/" target="_blank" class="facebook">Facebook</a>
-            <a href="https://zalo.me/0978240282" target="_blank" class="zalo">Zalo</a>
-            <a href="https://www.tiktok.com/@nguyentrinh.van?_t=ZS-8uBITnlf2Pp&_r=1" target="_blank" class="tiktok">TikTok</a>
+    <div class="content-wrapper">
+        <div class="question">Cô nàng xinh đẹp có muốn đi chơi với tôi không?</div>
+        
+        <div class="options">
+            <button class="option yes" id="yesButton">Có 🫶</button>
+            <button class="option no" id="noButton">Không 😌</button>
         </div>
-        <div class="divider"></div>
-        <p class="contact"><strong>Email:</strong> nguyenvantrinhdh@gmail.com</p>
-        <p class="contact"><strong>SĐT:</strong> 0978240282</p>
-    </div>
-    <div id="qr-popup" class="qr-popup" onclick="closeQR()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center;">
-        <div class="qr-popup-content" onclick="event.stopPropagation();" style="background: white; padding: 20px; border-radius: 10px; text-align: center; position: relative; width: 250px; height: 250px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <button class="close-btn" onclick="closeQR()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; width: 25px; height: 25px; border-radius: 50%; font-size: 18px; cursor: pointer;">X</button>
-            <img src="https://lh3.googleusercontent.com/d/1B43TvSD6ihXWuXwHvL8yAJ97HlDJvkXv" alt="QR Code" style="width: 200px; height: 200px; object-fit: cover; border-radius: 0;">
+        
+        <div class="media-container">
+            <img class="media-content" src="https://lh3.googleusercontent.com/d/1KP_CKmUcTD6dZ3cifj51OxoxSQzG3i--" alt="Ảnh tình yêu">
         </div>
     </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="popup-close" id="closePopup">&times;</span>
+            <h2>Yayyy! Em đồng ý rồi nè ❤️</h2>
+            <p>Anh biết ngay là em sẽ đồng ý mà! Chúng mình sẽ có một buổi hẹn hò thật tuyệt vời!</p>
+           	<img class="popup-image" src="https://lh3.googleusercontent.com/d/1J_GsOkBTNhlLLEADAbwGcY3sDHu5JFAw" alt="Ảnh tình yêu" width="125px">
+            <p>Hãy viết một lời nhắn ngọt ngào cho anh nhé 💌</p>
+            <textarea class="input-message" id="messageInput" 
+                      placeholder="Viết điều em muốn nói với anh vào đây nè..."></textarea>
+            <div class="spinner" id="spinner"></div>
+            <button class="submit-btn" id="submitBtn" disabled>Gửi cho anh</button>
+        </div>
+    </div>
+
+    <div class="popup" id="successPopup">
+        <div class="popup-content">
+            <h2>Thành công! ❤️</h2>
+            <div id="successMessage">
+                <strong>Anh đã nhận được lời nhắn của em rồi 😘</strong>
+                <div>❤️ Yêu em nhiều! ❤️</div>
+            </div>
+          	<img class="popup-image" src="https://lh3.googleusercontent.com/d/1KUE3Helh5rUdB3WIkYPj7iFPFYQZby8e" alt="Ảnh tình yêu">
+            	<button class="ok-button" id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <div class="popup" id="cancelPopup">
+        <div class="popup-content">
+            <h2>Em không muốn nhắn gì cho anh sao? 😑</h2>
+            <div id="cancelMessage">
+                <strong>Anh sẽ rất buồn nếu em không nhắn gì...</strong>
+                <div>Nên là nhắn cho anh rồi hẵng đi nhé! 😉</div>
+            </div>
+            <img class="popup-image" src="https://lh3.googleusercontent.com/d/1KSIb58hYFPeJ9jW33C1_MFh3jarHEEMQ" alt="Ảnh buồn" width="125px">
+            <button class="ok-button" id="cancelOkBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- Thêm popup thông báo lỗi -->
+    <div class="popup" id="errorPopup">
+        <div class="popup-content">
+            <h2>Oops! Có lỗi xảy ra 😢</h2>
+            <div id="errorMessage">
+                <strong>Anh không nhận được lời nhắn của em rồi...</strong>
+                <div>Em thử lại lần nữa nhé! Anh đợi mà ❤️</div>
+            </div>
+            <img class="popup-image" src="https://lh3.googleusercontent.com/d/1CryiQE7dHopOEqEqP_o0s4OwFk1jbVO1" alt="Ảnh buồn" width="125px">
+            <button class="ok-button" id="errorOkBtn">Thử lại</button>
+        </div>
+    </div>
+
+    <footer class="author-lh-footer">
+        Made with ❤️ by <a href="https://www.facebook.com/lognhoagn.05" target="_blank">Long Hoàng</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Lấy tất cả các phần tử DOM cần thiết
+    const elements = {
+        noButton: document.getElementById('noButton'),
+        yesButton: document.getElementById('yesButton'),
+        popup: document.getElementById('popup'),
+        closePopup: document.getElementById('closePopup'),
+        mediaContainer: document.querySelector('.media-container'),
+        messageInput: document.getElementById('messageInput'),
+        submitBtn: document.getElementById('submitBtn'),
+        spinner: document.getElementById('spinner'),
+        successPopup: document.getElementById('successPopup'),
+        successMessage: document.getElementById('successMessage'),
+        okBtn: document.getElementById('okBtn'),
+        cancelPopup: document.getElementById('cancelPopup'),
+        cancelOkBtn: document.getElementById('cancelOkBtn'),
+        errorPopup: document.getElementById('errorPopup'),
+        errorMessage: document.getElementById('errorMessage'),
+        errorOkBtn: document.getElementById('errorOkBtn')
+    };
+
+    // Object lưu trạng thái ứng dụng
+    const state = {
+        clickCount: 0,           // Số lần tương tác với nút "Không"
+        currentScale: 1,         // Tỉ lệ hiện tại của nút "Không"
+        yesScale: 1,             // Tỉ lệ hiện tại của nút "Có"
+        isProcessing: false,     // Cờ kiểm tra trạng thái xử lý
+        lastMessage: ''          // Lưu tin nhắn cuối cùng để thử lại
+    };
+
+    // Các hằng số cấu hình
+    const MAX_CLICKS_BEFORE_HIDE = 9; // Số lần click tối đa trước khi ẩn nút
+    const COLORS = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4'];
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUXhCjLCPLUAhfkMy9kZXXxzdTX5AANH1XruL5C3uPbJPnKWLnYK534BIOHS5sqRa-/exec";
+
+    /* ========== CÁC HÀM XỬ LÝ HIỆU ỨNG ========== */
+
+    // Tạo hiệu ứng confetti
+    function createConfetti() {
+        const confettiCount = 100;
+        for (let i = 0; i < confettiCount; i++) {
+            setTimeout(() => createConfettiPiece(), i * 30);
+        }
+    }
+
+    // Tạo từng mảnh confetti
+    function createConfettiPiece() {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.animationDuration = Math.random() * 2 + 1 + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 8000);
+    }
+
+    /* ========== CÁC HÀM XỬ LÝ NÚT "KHÔNG" ========== */
+
+    // Tìm vị trí hợp lệ để di chuyển nút
+    function findValidPosition(width, height, mediaRect) {
+        const maxAttempts = 20;
+        let attempts = 0;
+        
+        while (attempts < maxAttempts) {
+            const x = Math.max(10, Math.random() * (window.innerWidth - width - 10));
+            const y = Math.max(10, Math.random() * (window.innerHeight - height - 10));
+            
+            if (!checkOverlap(x, y, width, height, mediaRect)) {
+                return { x, y };
+            }
+            attempts++;
+        }
+        
+        return { 
+            x: Math.max(10, Math.random() * (window.innerWidth - width - 10)),
+            y: Math.max(10, Math.random() * (window.innerHeight - height - 10))
+        };
+    }
+
+    // Kiểm tra vị trí có chồng lấn không
+    function checkOverlap(x, y, width, height, mediaRect) {
+        return (
+            x + width > mediaRect.left && 
+            x < mediaRect.right && 
+            y + height > mediaRect.top && 
+            y < mediaRect.bottom
+        );
+    }
+
+    // Ẩn nút với hiệu ứng
+    function hideButton(button) {
+        if (!button) return;
+        setTimeout(() => {
+            button.style.transition = 'transform 0.5s ease-out';
+            button.style.transform = 'scale(0)';
+            button.style.pointerEvents = 'none';
+            setTimeout(() => button.remove(), 500);
+        }, 300);
+    }
+
+    // Xử lý khi tương tác với nút "Không"
+    function handleNoButtonAction(e) {
+        e.preventDefault();
+        if (state.isProcessing || !elements.noButton || !elements.yesButton) return;
+        
+        state.isProcessing = true;
+        state.clickCount++;
+        state.currentScale *= 0.85;
+        state.yesScale *= 1.15;
+
+        elements.noButton.style.transform = `scale(${state.currentScale})`;
+        elements.yesButton.style.transform = `scale(${state.yesScale})`;
+
+        const buttonRect = elements.noButton.getBoundingClientRect();
+        const mediaRect = elements.mediaContainer.getBoundingClientRect();
+        const newPosition = findValidPosition(
+            buttonRect.width * state.currentScale, 
+            buttonRect.height * state.currentScale, 
+            mediaRect
+        );
+
+        elements.noButton.style.transition = 'all 0.3s ease-out';
+        elements.noButton.style.position = 'fixed';
+        elements.noButton.style.left = `${newPosition.x}px`;
+        elements.noButton.style.top = `${newPosition.y}px`;
+
+        if (state.clickCount >= MAX_CLICKS_BEFORE_HIDE) hideButton(elements.noButton);
+        
+        setTimeout(() => { state.isProcessing = false; }, 300);
+    }
+
+    /* ========== CÁC HÀM XỬ LÝ POPUP ========== */
+
+    // Hiển thị popup chính
+    function showPopup() {
+        if (!elements.popup || !elements.noButton) return;
+        
+        // Ẩn nút "Không" với hiệu ứng
+        elements.noButton.style.transition = 'opacity 0.3s ease';
+        elements.noButton.style.opacity = '0';
+        setTimeout(() => {
+            elements.noButton.style.display = 'none';
+        }, 300);
+        
+        elements.popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Đóng popup chính
+    function closePopup() {
+        if (!elements.popup) return;
+        if (elements.messageInput) elements.messageInput.value = '';
+        if (elements.submitBtn) elements.submitBtn.disabled = true;
+        document.body.style.overflow = 'auto';
+    }
+
+    // Hiển thị popup thành công
+    function showSuccessPopup() {
+        elements.successPopup.style.display = 'flex';
+        createConfetti();
+    }
+
+    // Ẩn popup thành công và reset trạng thái
+    function hideSuccessPopup() {
+        if (elements.successPopup) {
+            elements.successPopup.style.display = 'none';
+        }
+        resetToInitialState();
+    }
+
+    // Hiển thị popup hủy
+    function showCancelPopup() {
+        elements.cancelPopup.style.display = 'flex';
+    }
+
+    // Ẩn popup hủy
+    function hideCancelPopup() {
+        elements.cancelPopup.style.display = 'none';
+    }
+
+    // Hiển thị popup lỗi
+    function showErrorPopup() {
+        elements.errorPopup.style.display = 'flex';
+    }
+
+    // Ẩn popup lỗi
+    function hideErrorPopup() {
+        elements.errorPopup.style.display = 'none';
+        // Khôi phục tin nhắn cũ để người dùng có thể thử lại
+        if (elements.messageInput && state.lastMessage) {
+            elements.messageInput.value = state.lastMessage;
+            if (elements.submitBtn) elements.submitBtn.disabled = false;
+        }
+    }
+
+    // Reset mọi thứ về trạng thái ban đầu
+    function resetToInitialState() {
+        // Reset state
+        state.clickCount = 0;
+        state.currentScale = 1;
+        state.yesScale = 1;
+        state.isProcessing = false;
+        state.lastMessage = '';
+        
+        // Reset nút "Không"
+        if (elements.noButton) {
+            elements.noButton.style.display = '';
+            elements.noButton.style.opacity = '1';
+            elements.noButton.style.transform = 'scale(1)';
+            elements.noButton.style.position = '';
+            elements.noButton.style.left = '';
+            elements.noButton.style.top = '';
+            elements.noButton.style.transition = '';
+        }
+        
+        // Reset nút "Có"
+        if (elements.yesButton) {
+            elements.yesButton.style.transform = 'scale(1)';
+        }
+        
+        // Đóng tất cả popup
+        if (elements.popup) elements.popup.style.display = 'none';
+        if (elements.successPopup) elements.successPopup.style.display = 'none';
+        if (elements.cancelPopup) elements.cancelPopup.style.display = 'none';
+        if (elements.errorPopup) elements.errorPopup.style.display = 'none';
+        
+        // Reset scroll
+        document.body.style.overflow = 'auto';
+    }
+
+    /* ========== XỬ LÝ SỰ KIỆN ========== */
+
+    // Xử lý input message
+    if (elements.messageInput && elements.submitBtn) {
+        elements.messageInput.addEventListener('input', function() {
+            elements.submitBtn.disabled = this.value.trim() === '';
+        });
+    }
+
+    // Xử lý gửi message
+    if (elements.submitBtn) {
+        elements.submitBtn.addEventListener('click', async function() {
+            const message = elements.messageInput?.value.trim();
+            if (!message) return;
+            
+            try {
+                state.lastMessage = message; // Lưu tin nhắn để có thể thử lại
+                
+                if (elements.spinner) elements.spinner.style.display = 'block';
+                if (elements.submitBtn) elements.submitBtn.disabled = true;
+                
+                const formData = new FormData();
+                formData.append('data', JSON.stringify({ message: message }));
+                
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Lỗi kết nối với server');
+                }
+                
+                const result = await response.json();
+                if (result.status !== "success") {
+                    throw new Error(result.message || 'Lỗi khi lưu dữ liệu');
+                }
+                
+                closePopup();
+                showSuccessPopup();
+            } catch (error) {
+                console.error('Lỗi:', error);
+                // Hiển thị popup lỗi thay vì alert
+                closePopup();
+                showErrorPopup();
+                
+                // Cập nhật thông báo lỗi chi tiết
+                if (elements.errorMessage) {
+                    let errorText = `<strong>Anh không nhận được lời nhắn của em rồi...</strong>`;
+                    if (error.message.includes('server')) {
+                        errorText += `<div>Lỗi kết nối với server, em thử lại nhé!</div>`;
+                    } else {
+                        errorText += `<div>Em thử lại lần nữa nhé! Anh đợi mà ❤️</div>`;
+                    }
+                    elements.errorMessage.innerHTML = errorText;
+                }
+            } finally {
+                if (elements.spinner) elements.spinner.style.display = 'none';
+                if (elements.submitBtn) elements.submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // Gán sự kiện cho nút "Không"
+    if (elements.noButton) {
+        elements.noButton.addEventListener('mouseenter', handleNoButtonAction);
+        elements.noButton.addEventListener('click', handleNoButtonAction);
+    }
+
+    // Gán sự kiện cho nút "Có"
+    if (elements.yesButton) {
+        elements.yesButton.addEventListener('click', showPopup);
+    }
+
+    // Gán sự kiện đóng popup
+    if (elements.closePopup) {
+        elements.closePopup.addEventListener('click', function(e) {
+            e.preventDefault();
+            closePopup();
+            showCancelPopup();
+        });
+    }
+    
+    // Gán sự kiện cho nút OK trong popup hủy
+    if (elements.cancelOkBtn) {
+        elements.cancelOkBtn.addEventListener('click', hideCancelPopup);
+    }
+    
+    // Gán sự kiện cho nút OK trong popup thành công
+    if (elements.okBtn) {
+        elements.okBtn.addEventListener('click', hideSuccessPopup);
+    }
+    
+    // Gán sự kiện cho nút OK trong popup lỗi
+    if (elements.errorOkBtn) {
+        elements.errorOkBtn.addEventListener('click', hideErrorPopup);
+    }
+});
+    </script>
 </body>
 </html>
